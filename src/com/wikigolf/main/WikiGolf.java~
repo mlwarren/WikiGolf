@@ -1,0 +1,26 @@
+
+import java.util.Scanner;
+
+
+public class WikiGolf {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		WikiSiteGet wsg = new WikiSiteGet();
+		String url = "http://en.wikipedia.org/wiki/Domestication";
+		String children = wsg.getRefinedWikiLinks(wsg.getWebpageInfo(url));
+		WikiSite current = new WikiSite(url,null,children);
+		System.out.println("<" + url + ">\n" + children + "</" + url + ">");
+		Scanner scan = new Scanner(children);
+
+		while(scan.hasNext()){		
+			String child = scan.next();
+			String childUrl = "http://en.wikipedia.org/"+child;
+			String subChildren = wsg.getRefinedWikiLinks(wsg.getWebpageInfo(childUrl));
+			System.out.println("<" + childUrl + ">\n" + subChildren + "</" + url + ">");
+		}
+	}
+
+}
