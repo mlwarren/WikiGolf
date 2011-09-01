@@ -30,7 +30,6 @@ public class WikiGolf {
 					Scanner childScan = new Scanner(children);
 					boolean parentDir = (new File(oldDir+title)).mkdir();
 					while(childScan.hasNext()){
-						System.err.println("hey");
 						String childUrl = "http://en.wikipedia.org"+childScan.next();
 						String childTitle = wsg.getWebsiteTitle(childUrl);
 						String subChildren = wsg.getRefinedWikiLinks(wsg.getWebpageInfo(childUrl));
